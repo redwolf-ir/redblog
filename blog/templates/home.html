@@ -8,6 +8,8 @@
 <body>
     {% for article in articles %}
         <a href="{{article.slug}}">{{article.title}}</a>
+        <small> {{article.jpublished}} </small>
+        <article> {{article.content|truncatechars:200|linebreaks}} </article>
         <br>
     {% endfor %}
 </body>

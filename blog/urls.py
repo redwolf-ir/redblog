@@ -3,5 +3,6 @@ from . import views
 
 app_name = "blog"
 urlpatterns = [
-    url('^$', views.home, name='home_view'),
+    url(r'^$', views.home, name = 'home_page_view'),
+    url(r'^blog/(?P<slug>[\w-]+)/$(?i)', views.detail, name = 'detail_post_view'),
 ]
