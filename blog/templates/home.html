@@ -6,14 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
     {% for article in articles %}
         <a href="{{article.slug}}">{{article.title}}</a>
         <small> {{article.jpublished}} </small>
         <article> {{article.content|truncatechars:200|linebreaks}} </article>
+        {% for cat in article.category.all %}
+            <a href="{% url 'blog:category_view' cat.slug %}">{{ cat.title }}</a>
+        {% endfor %}
         <br>
     {% endfor %}
+
+    <ul>
+        {% if articles.has_next %}
+        <li><a href="{% url 'blog:home_page_view' articles.next_page_number %}">پست های قبلی</a></li>
+        {% endif %}
+        {% if articles.has_previous %}
+        <li><a href="{% url 'blog:home_page_view' articles.previous_page_number %}">پست های جدید</a></li>
+        {% endif %}
+    </ul>
 
     {% category_nav %}
 </body>

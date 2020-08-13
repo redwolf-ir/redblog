@@ -1,9 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Article, Category
+from django.core.paginator import Paginator
 
-def home(request):
+
+def home(request, page = 1):
+    article_list = Article.objects.published()
+    paginator = Paginator(article_list, 1)
+    articles = paginator.get_page(page)
     context = {
-        'articles' : Article.objects.published().order_by('-published')[:3]
+        'articles' : articles,
     }
     return render(request, 'home.html', context)
 

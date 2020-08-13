@@ -8,6 +8,7 @@
     <title>{% title %}</title>
 </head>
 <body>
+    <h3>{{ category.title }}</h3>
     {% for article in category.articles.published %}
         <a href="{{article.slug}}">{{article.title}}</a>
         <small> {{article.jpublished}} </small>
