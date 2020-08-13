@@ -8,13 +8,11 @@
     <title>{% title %}</title>
 </head>
 <body>
-    {% for article in articles %}
+    {% for article in category.articles.published %}
         <a href="{{article.slug}}">{{article.title}}</a>
         <small> {{article.jpublished}} </small>
         <article> {{article.content|truncatechars:200|linebreaks}} </article>
         <br>
-    {% endfor %}
-
-    {% category_nav %}
+    {% endfor %}    
 </body>
 </html>
