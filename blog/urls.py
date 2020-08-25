@@ -8,4 +8,5 @@ urlpatterns = [
     path('page/<int:page>', views.home, name = 'home_page_view'),
     url(r'^blog/(?P<slug>[\w-]+)/$(?i)', views.detail, name = 'detail_post_view'),
     url(r'^category/(?P<slug>[\w]+)/$(?i)', views.category, name = 'category_view'),
+    path('category/<slug:slug>/page/<int:page>', views.category, name = 'category_view'),
 ]
